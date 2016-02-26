@@ -10,12 +10,13 @@ require './models/posts'
 require './models/followers_followeds'
 
 #needed for sessions
-#set :sessions, true
+set :sessions, true
 #needed for flash
-#enable :sessions
+enable :sessions
 
 
 get '/' do
+  loggedIn
   erb :home
 end
 
@@ -32,11 +33,35 @@ get '/sign_up' do
 end
 
 post '/newUser' do
-  @fname = params["fname"]
-  @lname = params["lname"]
-  @email = params["email"]
-  @handle = params["handle"]
-  @password = params["password"]
-  User.create(fname: @fname, lname: @lname, email: @email, handle: @handle, password: @password)
+  User.create(fname: params["fname"], lname: params["lname"], email: params["email"], handle: params["handle"], password: params["password"])
   redirect "/user"
 end
+
+post '/login' do
+  user = User.find_by(handle: params["handle"])
+  if user && user.password == params["password"]
+    session[:user_id] = user.id
+    redirect to '/'
+  else
+    redirct to '/'
+  end
+end
+
+post '/logout' do
+  session[:user_id] = nil
+  redirect to '/'
+end
+
+def loggedIn
+  @user = current_user
+end
+
+def current_user
+  if session[:user_id]
+    User.find(session[:user_id])
+  else
+    nil
+  end
+end
+
+

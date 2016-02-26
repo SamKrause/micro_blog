@@ -5,3 +5,23 @@
     <a href='/sign_up'>Sign Up</a>
   </nav>
 </div>
+<div>
+  <h3>Login</h3>
+  <form method="POST" action="/login">
+    <label for="handle">Handle</label>
+    <input type="text" name="handle"><br>
+    <label for="password">Password</label>
+    <input type="password" name="password"><br>
+    <input type="submit">
+  </form>
+</div>
+<div>
+  <h3>Logout</h3>
+  <form method="POST" action="/logout">
+    <input type="submit">
+  </form>
+</div>
+<div>
+  <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
+</div>
+
