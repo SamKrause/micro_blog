@@ -30,3 +30,13 @@ end
 get '/sign_up' do
   erb :sign_up
 end
+
+post '/newUser' do
+  @fname = params["fname"]
+  @lname = params["lname"]
+  @email = params["email"]
+  @handle = params["handle"]
+  @password = params["password"]
+  User.create(fname: @fname, lname: @lname, email: @email, handle: @handle, password: @password)
+  redirect "/user"
+end
