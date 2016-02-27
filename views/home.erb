@@ -25,10 +25,22 @@
   <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
 </div>
 
-<% @posts.each do |post| %>
+<% @posts.reverse.take(10).each do |post| %>
 
-<div>
+<div class='home-post'>
+  <p><%= User.getHandle(post.user_id) %></p>
   <p><%= post.message %></p>
+  <p><%= post.created_at %></p>
+  <form method="POST" action="/follow_other_user" >
+    <label for"followed_id">Follow</label>
+    <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+    <input type="submit">
+  </form>
+  <form method="POST" action="/unfollow_other_user" >
+    <label for"followed_id">Unfollow</label>
+    <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+    <input type="submit"><br>
+  </form>
 </div>
 
 <% end %>

@@ -33,6 +33,7 @@ get '/sign_up' do
   erb :sign_up
 end
 
+#Home Methods
 post '/newUser' do
   User.create(fname: params["fname"], lname: params["lname"], email: params["email"], handle: params["handle"], password: params["password"])
   redirect "/user"
@@ -44,7 +45,7 @@ post '/login' do
     session[:user_id] = user.id
     redirect to '/'
   else
-    redirct to '/'
+    redirect to '/'
   end
 end
 
@@ -53,6 +54,29 @@ post '/logout' do
   redirect to '/'
 end
 
+post '/follow_other_user' do
+  loggedIn
+  if FollowerFollowed.find_by(follower_id: @user.id, followed_id: params["followed_id"]).nil?
+    FollowerFollowed.create(follower_id: @user.id, followed_id: params["followed_id"])
+    redirect to '/'
+  else
+    puts "Already Followed"
+    redirect to '/'
+  end
+end
+
+post '/unfollow_other_user' do
+  loggedIn
+  if FollowerFollowed.find_by(follower_id: @user.id, followed_id: params["followed_id"]).nil?
+    puts "Not Following"
+    redirect to '/'
+  else
+    FollowerFollowed.find_by(follower_id: @user.id, followed_id: params["followed_id"]).destroy
+    redirect to '/'
+  end
+end
+
+#Universal Methods
 def loggedIn
   @user = current_user
 end
@@ -64,5 +88,3 @@ def current_user
     nil
   end
 end
-
-

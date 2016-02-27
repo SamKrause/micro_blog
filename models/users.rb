@@ -18,5 +18,10 @@ class User < ActiveRecord::Base
     end
     return followingArray
   end
+
+  def self.getHandle (user_id)
+    handle = User.where(:id => user_id).pluck(:handle)
+    return handle[0]
+  end
 end
 
