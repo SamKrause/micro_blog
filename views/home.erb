@@ -25,3 +25,11 @@
   <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
 </div>
 
+<% @posts.each do |post| %>
+
+<div>
+  <p><%= post.message %></p>
+</div>
+
+<% end %>
+
