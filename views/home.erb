@@ -1,8 +1,11 @@
 <div class='side-bar'>
   <nav>
     <a href='/'>Home</a>
+<% if @user %>
     <a href='/user'>My Page</a>
+<% else %>
     <a href='/sign_up'>Sign Up</a>
+<% end %>
   </nav>
 </div>
 <div>
@@ -27,7 +30,7 @@
 
 <% @posts.reverse.take(10).each do |post| %>
 
-<div class='home-post'>
+<div class='home-posts'>
   <p><%= User.getHandle(post.user_id) %></p>
   <p><%= post.message %></p>
   <p><%= post.created_at %></p>

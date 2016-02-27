@@ -1,0 +1,42 @@
+<div>
+  <h2><%= @user.handle %></h2>
+</div>
+<div>
+  <p><%= @user.fname + " " + @user.lname %></p>
+  <p><%= @user.email %></p>
+</div>
+<a href='/'>Home</a>
+<div>
+  <h3>Delete</h3>
+  <form method="POST" action="/deleteUser">
+    <input type="submit">
+  </form>
+</div>
+<form method="POST" action="/newPost">
+  <label for="message">What is on your mind?</label>
+  <textarea name="message"></textarea>
+  <input type="submit">
+</form>
+
+<% @posts.reverse.each do |post| %>
+
+<div class='user-posts'>
+  <p><%= post.message %></p>
+  <p><%= post.created_at %></p>
+</div>
+
+<% end %>
+
+<div class='following-list'>
+  <h4>Following</h4>
+  <% @following.each do |following| %>
+  <p><%= User.getHandle(following.followed_id) %></p>
+  <% end %>
+</div>
+
+<div class='followers-list'>
+  <h4>Followers</h4>
+  <% @followers.each do |followers| %>
+  <p><%= User.getHandle(followers.follower_id) %></p>
+  <% end %>
+</div>

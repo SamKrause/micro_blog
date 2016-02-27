@@ -22,6 +22,10 @@ get '/' do
 end
 
 get '/user' do
+  loggedIn
+  @posts = Post.where(:user_id => @user.id).all
+  @following = FollowerFollowed.where(:follower_id => @user.id)
+  @followers = FollowerFollowed.where(:followed_id => @user.id)
   erb :user
 end
 
@@ -36,6 +40,8 @@ end
 #Home Methods
 post '/newUser' do
   User.create(fname: params["fname"], lname: params["lname"], email: params["email"], handle: params["handle"], password: params["password"])
+  user = User.find_by(handle: params["handle"])
+  session[:user_id] = user.id
   redirect "/user"
 end
 
@@ -76,6 +82,23 @@ post '/unfollow_other_user' do
   end
 end
 
+#User Page Methods
+post '/newPost' do
+  loggedIn
+  Post.create(user_id: @user.id, message: params["message"], created_at: Time.now)
+  redirect "/user"
+end
+
+post '/deleteUser' do
+  loggedIn
+  Post.where(:user_id => @user.id).destroy_all
+  FollowerFollowed.where(:follower_id => @user.id).destroy_all
+  FollowerFollowed.where(:followed_id => @user.id).destroy_all
+  User.find(@user.id).destroy
+  session[:user_id] = nil
+  redirect '/'
+end
+
 #Universal Methods
 def loggedIn
   @user = current_user
@@ -88,3 +111,4 @@ def current_user
     nil
   end
 end
+
