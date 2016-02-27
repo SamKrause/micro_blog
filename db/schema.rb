@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226214347) do
+ActiveRecord::Schema.define(version: 20160227143321) do
 
   create_table "follower_followeds", force: :cascade do |t|
     t.integer "follower_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160226214347) do
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "message"
-    t.datetime "created_at", default: '2016-02-26 02:51:25'
+    t.datetime "created_at"
   end
 
   create_table "users", force: :cascade do |t|
