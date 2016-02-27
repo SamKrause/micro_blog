@@ -17,6 +17,7 @@ enable :sessions
 
 get '/' do
   loggedIn
+  @posts = Post.all
   erb :home
 end
 

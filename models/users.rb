@@ -9,5 +9,14 @@ class User < ActiveRecord::Base
     end
     return followersArray
   end
+
+  def following
+    followingIds = FollowerFollowed.where(:follower_id => self.id).pluck(:followed_id)
+    followingArray = []
+    followingIds.each do |id|
+      followingArray.push User.find(id)
+    end
+    return followingArray
+  end
 end
 
