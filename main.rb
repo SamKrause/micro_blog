@@ -89,6 +89,12 @@ post '/newPost' do
   redirect "/user"
 end
 
+post '/editUser' do
+  loggedIn
+  User.update(@user.id, :fname => params["fname"], :lname => params["lname"], :email => params["email"], :handle => params["handle"], :password => params["password"])
+  redirect "/user"
+end
+
 post '/deleteUser' do
   loggedIn
   Post.where(:user_id => @user.id).destroy_all
