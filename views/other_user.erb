@@ -1,0 +1,30 @@
+<div>
+  <h2><%= @other_user.handle %></h2>
+</div>
+<div>
+  <p><%= @other_user.fname + " " + @other_user.lname %></p>
+  <p><%= @other_user.email %></p>
+</div>
+<a href='/'>Home</a>
+<a href="/user">My Profile</a>
+
+<% @posts.reverse.each do |post| %>
+<div class='user-posts'>
+  <p><%= post.message %></p>
+  <p><%= post.created_at %></p>
+</div>
+<% end %>
+
+<div class='following-list'>
+  <h4>Following</h4>
+  <% @following.each do |following| %>
+  <p><%= User.getHandle(following.followed_id) %></p>
+  <% end %>
+</div>
+
+<div class='followers-list'>
+  <h4>Followers</h4>
+  <% @followers.each do |followers| %>
+  <p><%= User.getHandle(followers.follower_id) %></p>
+  <% end %>
+</div>
