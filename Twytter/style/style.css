@@ -1,48 +1,13 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
-html{font-family: sans-serif; 
-  background-image: url(../images/noise.png);
-  background  background-repeat: repeat-x; }
-h2{font-size:3em;}
-h3{font-size: 1.5em;}
+
 
 /*layout control*/
-.cSpan, .mainNav{width:100%;}
-header, .topMenu{width:960px; margin:auto;}
+.cSpan{width:100%;}
+header{width:960px; margin:auto;}
 
 
 
 /*END layout control*/	
-.mainNav{height:25px; position:fixed; background-color:black; z-index: 1000;}
-.topMenu nav { width:300px; eeition:relative; 
-  left: 800px; float:right;}
-  .topMenu ul li{display: inline-block;   }
-  .topMenu li{font-family:sans-serif; padding:3px;}
-  .topMenu a:link{color:#ffffff;}
-  .topMenu a:active{color:#fff;}
-  .topMenu a:visited{color:#fff;}
-  .topMenu a:hover{color:grey;}
-
-.smLogo{background:url(../images/TSmall.svg) no-repeat; 
-  height:30px; width:120px; display:inline-block; background-size: contain;}
-#outer-box {
-  position:fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,.5);
-  display: none;
-}
-
-#inner-box {
-  text-align: center;
-  background-color: white;
-  border: 1px solid black;
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
-}
 
 .headBK { 
   background: url(../images/bkimage.jpg) no-repeat center center ; 
@@ -52,18 +17,15 @@ header, .topMenu{width:960px; margin:auto;}
   top:-30px;
   min-height:550px;
   height:65%;
-  z-index: -100;
-  margin-top:50px;
-}
+  z-index: -1000;
+  background-color: red;}
   header{height:500px;}
 
   .twitterLogo{background: url(../images/twytterLogo.svg) no-repeat;
-  	width:330px; height:250px; background-size: contain; 
+  	width:300px; height: 300px; background-size: contain;
   	position:relative; top:100px; left:34%; opacity: .5; }
 
-    .user_edit_wrap{position: relative; top:200px; width:500px; margin:0 auto;}
   	/*buttons*/
-    .submitButtonP{border:1px solid black;}
   	.user_Access{font-family: sans-serif;letter-spacing: 1.5px;
   		position:relative; top:100px;text-align: center;}
   	.user_Access ul li{display:inline-block; width:75px;
@@ -78,14 +40,4 @@ header, .topMenu{width:960px; margin:auto;}
   	.user_Access a:active{color:#ffffff;}
   	.user_Access a:visited{color:#ffffff;}
   	.user_Access li:hover{background-color: #9BBEC9;}
-
-    .ome_posts_wrap{width:500px; margin:0 auto;font-family: sans-serif;}
-    .page_posts_bk{margin-top:75sspx;}
-    .post_message{padding:10px; margin:10px 0 10px 0; width:500px; border:1px solid grey; border-radius: 3px;}
-    .post_date{font-size:.8em; color:blue; text-align:right;}
   	
-    .lblFloat{float:left;display:inline-block;}
-    .loginLabelP{ width:300px;}
-    .follow{display:inline-block;float:left;}
-    .followed{}
-    .formTxt{width:500px; padding:10px 0 5px 0; margin-bottom:15px; font-size:1em;

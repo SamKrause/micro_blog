@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html>    <% @user %>
+
   <head>
     <title>Twytter</title>
     <link rel='stylesheet' type='text/css' href='./css/style.css'>
   </head>
   <body>
-    <header>
-      <h1>Twytter!</h1>
-    </header>
+    <div class="mainNav">
+      <div class="topMenu">
+      <a href="/"><div class="smLogo"></div></a>
+      <nav>
+      <ul>
+        <a href="/"><li>Home</li></a>
+        <li>
+ 
+<% if @user %>
+    <a href='/user'>My Page</a>
+<% else  %>
+
+    <a href='/sign_up'>Sign Up</a>
+<% end %> </li>
+<li>
+
+  <form class="submitButton" method="POST"  text="Logouts" action="/logout">
+    <input value="Log Out" type="submit">
+  </form>
+
+
+</li>
+
+
+             </ul>
+</nav>
+
+
+             
+      </div>
+    </div>
+     
+     
+
 
 <%= yield %>
 
@@ -16,3 +48,5 @@
 
   <script src="./js/main.js"></script>
 </html>
+
+

@@ -1,0 +1,20 @@
+<div style="width:100%">
+
+<div style="width:600px; margin:0 auto;">
+
+	<div style=" margin: 0 auto; height: 150px; width: 600px; border: 1px solid grey; border-radius: 4px; vertical-align: 50%;  position:relative; top:300px; ">
+	  <% @user %>
+	  <h2>User Log-In</h2>
+	  <div style="padding:5px;">
+	  <form method="POST" action="/login" >
+	    <label style="color:red;" for="handle">Handle</label>
+	    <input class="formTxt"  type="text" name="handle"><br>
+	    <label style="color:red;"  for="password">Password</label>
+	    <input class="formTxt"  type="password" name="password"><br>
+	    <input type="submit">
+  		</form>
+  		</div>
+	</div>
+</div>
+</div>
+

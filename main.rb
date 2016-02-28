@@ -45,7 +45,9 @@ end
 get '/sign_up' do
   erb :sign_up
 end
-
+get '/login' do
+  erb :login
+end
 #Home Methods
 post '/newUser' do
   User.create(fname: params["fname"], lname: params["lname"], email: params["email"], handle: params["handle"], password: params["password"])
