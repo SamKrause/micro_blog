@@ -1,71 +1,77 @@
-<div>
-  <h2><%= @user.handle %></h2>
-</div>
-<div>
-  <p><%= @user.fname + " " + @user.lname %></p>
-  <p><%= @user.email %></p>
-</div>
-<a href='/'>Home</a>
-<a href="#" class="modal-link">Edit Profile</a>
-<div class="delete-button">
-  <h3>Delete</h3>
-  <form method="POST" action="/deleteUser">
-    <input type="submit">
-  </form>
-</div>
-<form method="POST" action="/newPost">
-  <label for="message">What is on your mind?</label>
-  <textarea name="message"></textarea>
-  <input type="submit">
-</form>
-
-<% @posts.reverse.each do |post| %>
-<div class='user-posts'>
-  <p><%= post.message %></p>
-  <p><%= post.created_at %></p>
-</div>
-<% end %>
-
-<div class='following-list'>
-  <h4>Following</h4>
-  <% @following.each do |following| %>
-  <form method="POST" action="/other_user">
-    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
-    <button>
-      <p><%= User.getHandle(following.followed_id) %></p>
-    </button>
-  </form>
-  <% end %>
-</div>
-
-<div class='followers-list'>
-  <h4>Followers</h4>
-  <% @followers.each do |followers| %>
-  <form method="POST" action="/other_user">
-    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
-    <button>
-      <p><%= User.getHandle(followers.follower_id) %></p>
-    </button>
-  </form>
-  <% end %>
-</div>
-<div id="outer-box">
-  <div id="inner-box">
-    <div id="modal-appear">
-      <form method="POST" action="/editUser">
-        <label for="fname">First Name</label>
-        <input type="text" name="fname" value=<%= @user.fname %>><br>
-        <label for="lname">Last Name</label>
-        <input type="text" name="lname" value=<%= @user.lname %>><br>
-        <label for="email">Email</label>
-        <input type="text" name="email" value=<%= @user.email %>><br>
-        <label for="handle">Handle</label>
-        <input type="text" name="handle" value=<%= @user.handle %>><br>
-        <label for="password">Password</label>
-        <input type="text" name="password" value=<%= @user.password %>><br>
-        <input id="submit" type="submit">
-      </form>
-      <button id='cancel'>Cancel</button>
+<div class="cSpan">
+<div class="user_edit_wrap">
+    <div>
+      <h2>User Account: <%= @user.handle %></h2>
     </div>
-  </div>
+    <div>
+      <p><%= @user.fname + " " + @user.lname %></p>
+      <p><%= @user.email %></p>
+    </div>
+    <a href='/'>Home</a>
+    <a href="#" class="modal-link">Edit Profile</a>
+    <div class="delete-button">
+      <h3>Delete</h3>
+      <form method="POST" action="/deleteUser">
+        <input type="submit">
+      </form>
+    </div>
+    <form method="POST" action="/newPost">
+      <label for="message">What is on your mind?</label>
+      <textarea name="message"></textarea>
+      <input type="submit">
+    </form>
+
+    <% @posts.reverse.each do |post| %>
+    <div class='user-posts'>
+      <p><%= post.message %></p>
+      <p><%= post.created_at %></p>
+    </div>
+    <% end %>
+
+    <div class='following-list'>
+      <h4>Following</h4>
+      <% @following.each do |following| %>
+      <form method="POST" action="/other_user">
+        <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
+        <button>
+          <p><%= User.getHandle(following.followed_id) %></p>
+        </button>
+      </form>
+      <% end %>
+    </div>
+
+    <div class='followers-list'>
+      <h4>Followers</h4>
+      <% @followers.each do |followers| %>
+      <form method="POST" action="/other_user">
+        <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
+        <button>
+          <p><%= User.getHandle(followers.follower_id) %></p>
+        </button>
+      </form>
+      <% end %>
+    </div>
+
+
+    <div id="outer-box">
+      <div id="inner-box">
+        <div id="modal-appear">
+          <form method="POST" action="/editUser">
+            <label for="fname">First Name</label>
+            <input  class="formTxt" type="text" name="fname" value=<%= @user.fname %>><br>
+            <label for="lname">Last Name</label>
+            <input class="formTxt" type="text" name="lname" value=<%= @user.lname %>><br>
+            <label for="email">Email</label>
+            <input class="formTxt" type="text" name="email" value=<%= @user.email %>><br>
+            <label for="handle">Handle</label>
+            <input class="formTxt" type="text" name="handle" value=<%= @user.handle %>><br>
+            <label for="password">Password</label>
+            <input class="formTxt" type="text" name="password" value=<%= @user.password %>><br>
+            <input id="submit" type="submit">
+          </form>
+          <button id='cancel'>Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
 </div>

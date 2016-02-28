@@ -1,55 +1,71 @@
+<div class="cSpan">
+  <div class="headBK"></div>
+  
+  <div style="height:500px; ">
+    <header><p class="twitterLogo" />
+    <div class="user_Access">
+    <ul>
+    <a href="/login"><li>Log In</li></a>
+    <a href="/sign_up"><li>Sign Up</li></a>
+    </ul>
+    </div></header>
+  
+  </div>
+
+
 <div class='side-bar'>
   <nav>
     <a href='/'>Home</a>
 <% if @user %>
     <a href='/user'>My Page</a>
-<% else %>
-    <a href='/sign_up'>Sign Up</a>
+s<% else %>
+   <a href='/sign_up'>Sign Up</a> 
 <% end %>
   </nav>
 </div>
-<div>
-  <h3>Login</h3>
-  <form method="POST" action="/login">
-    <label for="handle">Handle</label>
-    <input type="text" name="handle"><br>
-    <label for="password">Password</label>
-    <input type="password" name="password"><br>
-    <input type="submit">
-  </form>
-</div>
-<div>
-  <h3>Logout</h3>
-  <form method="POST" action="/logout">
-    <input type="submit">
-  </form>
-</div>
-<div>
-  <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
-</div>
 
-<% @posts.reverse.take(10).each do |post| %>
 
-<div class='home-posts'>
-  <form method="POST" action="/other_user">
-    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
-    <button>
-      <p><%= User.getHandle(post.user_id) %></p>
-    </button>
-  </form>
-  <p><%= post.message %></p>
-  <p><%= post.created_at %></p>
-  <form method="POST" action="/follow_other_user" >
-    <label for"followed_id">Follow</label>
-    <input type="hidden" name="followed_id" value=<%= post.user_id %>>
-    <input type="submit">
-  </form>
-  <form method="POST" action="/unfollow_other_user" >
-    <label for"followed_id">Unfollow</label>
-    <input type="hidden" name="followed_id" value=<%= post.user_id %>>
-    <input type="submit"><br>
-  </form>
+
+
+
+
+
+
+<div class="page_posts_bk">
+  <div class="ome_posts_wrap">
+    <div>
+      <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
+      <h3> Here's what you've missed so far</h3>
+    </div>
+
+    <% @posts.reverse.take(10).each do |post| %>
+
+    <div class='home-posts' style="margin:50px;">
+
+      <form method="POST" action="/other_user">
+        <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
+        <button>
+          <p style="color:red;"><%= User.getHandle(post.user_id) %></p>
+        </button>
+      </form>
+
+
+      <div class="post_message"><%= post.message %></div>
+      <div class="post_date">Posted On: <%= post.created_at %></div>
+
+       <div class="follow"> <form method="POST" action="/follow_other_user" >
+          <label style="padding:15px;" for"followed_id">Follow</label><br
+          <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+          <input type="submit">
+        </form>
+        <form method="POST" action="/unfollow_other_user" >
+          <label style="padding:15px;" for"followed_id">Unfollow</label>
+          <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+          <input type="submit"><br>
+        </form></div>
+    </div>
+
+    <% end %>
+    </div>
 </div>
-
-<% end %>
 
