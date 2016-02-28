@@ -13,32 +13,23 @@
       <ul>
         <a href="/"><li>Home</li></a>
         <li>
- 
-<% if @user %>
-    <a href='/user'>My Page</a>
-<% else  %>
-
-    <a href='/sign_up'>Sign Up</a>
-<% end %> </li>
-<li>
-
-  <form class="submitButton" method="POST"  text="Logouts" action="/logout">
-    <input value="Log Out" type="submit">
-  </form>
-
-
-</li>
-
-
-             </ul>
-</nav>
+          <% if @user %>
+            <a href='/user'>My Page</a>
+          <% else  %>
+            <a href='/sign_up'>Sign Up</a>
+          <% end %>
+        </li>
+        <li>
+          <form class="submitButton" method="POST"  text="Logouts" action="/logout">
+          <input value="Log Out" type="submit">
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 
 
-             
-      </div>
-    </div>
-     
-     
 
 
 <%= yield %>
