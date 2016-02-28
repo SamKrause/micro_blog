@@ -6,7 +6,8 @@
   <p><%= @user.email %></p>
 </div>
 <a href='/'>Home</a>
-<div>
+<a href="#" class="modal-link">Edit Profile</a>
+<div class="delete-button">
   <h3>Delete</h3>
   <form method="POST" action="/deleteUser">
     <input type="submit">
@@ -19,12 +20,10 @@
 </form>
 
 <% @posts.reverse.each do |post| %>
-
 <div class='user-posts'>
   <p><%= post.message %></p>
   <p><%= post.created_at %></p>
 </div>
-
 <% end %>
 
 <div class='following-list'>
@@ -39,4 +38,24 @@
   <% @followers.each do |followers| %>
   <p><%= User.getHandle(followers.follower_id) %></p>
   <% end %>
+</div>
+<div id="outer-box">
+  <div id="inner-box">
+    <div id="modal-appear">
+      <form method="POST" action="/editUser">
+        <label for="fname">First Name</label>
+        <input type="text" name="fname" value=<%= @user.fname %>><br>
+        <label for="lname">Last Name</label>
+        <input type="text" name="lname" value=<%= @user.lname %>><br>
+        <label for="email">Email</label>
+        <input type="text" name="email" value=<%= @user.email %>><br>
+        <label for="handle">Handle</label>
+        <input type="text" name="handle" value=<%= @user.handle %>><br>
+        <label for="password">Password</label>
+        <input type="text" name="password" value=<%= @user.password %>><br>
+        <input id="submit" type="submit">
+      </form>
+      <button id='cancel'>Cancel</button>
+    </div>
+  </div>
 </div>
