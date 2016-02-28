@@ -12,13 +12,34 @@
       <nav>
       <ul>
         <a href="/"><li>Home</li></a>
-        <a href="/user"><li>My Page</li></a>
-        <li><form class="submitButton" method="POST"  text="Logouts" action="/logout">
-    <input type="submit">
-  </form></li>
-      </ul>
+        <li>
+ 
+<% if @user %>
+    <a href='/user'>My Page</a>
+<% else  %>
+
+    <a href='/sign_up'>Sign Up</a>
+<% end %> </li>
+<li>
+
+  <form class="submitButton" method="POST"  text="Logouts" action="/logout">
+    <input value="Log Out" type="submit">
+  </form>
+
+
+</li>
+
+
+             </ul>
+</nav>
+
+
+             
       </div>
     </div>
+     
+     
+
 
 <%= yield %>
 
@@ -27,3 +48,5 @@
 
   <script src="./js/main.js"></script>
 </html>
+
+

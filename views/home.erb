@@ -11,26 +11,8 @@
     </div></header>
   
   </div>
-
-
-<div class='side-bar'>
-  <nav>
-    <a href='/'>Home</a>
-<% if @user %>
-    <a href='/user'>My Page</a>
-s<% else %>
-   <a href='/sign_up'>Sign Up</a> 
-<% end %>
-  </nav>
 </div>
-
-
-
-
-
-
-
-
+<div style="height:150px;"></div>
 <div class="page_posts_bk">
   <div class="ome_posts_wrap">
     <div>
@@ -40,29 +22,36 @@ s<% else %>
 
     <% @posts.reverse.take(10).each do |post| %>
 
-    <div class='home-posts' style="margin:50px;">
-
+    <div class='home-posts' >
+    
       <form method="POST" action="/other_user">
-        <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
-        <button>
-          <p style="color:red;"><%= User.getHandle(post.user_id) %></p>
-        </button>
-      </form>
+    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
+    <button>
+      <p><%= User.getHandle(post.user_id) %></p>
+    </button>
+  </form>
 
-
+  
       <div class="post_message"><%= post.message %></div>
       <div class="post_date">Posted On: <%= post.created_at %></div>
 
-       <div class="follow"> <form method="POST" action="/follow_other_user" >
-          <label style="padding:15px;" for"followed_id">Follow</label><br
+       <div class="follow"> 
+
+       <form method="POST" action="/follow_other_user" >
+          <label for"followed_id">Follow</label>
+
           <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+
           <input type="submit">
         </form>
+
         <form method="POST" action="/unfollow_other_user" >
-          <label style="padding:15px;" for"followed_id">Unfollow</label>
-          <input type="hidden" name="followed_id" value=<%= post.user_id %>>
-          <input type="submit"><br>
-        </form></div>
+          <div class="lblFloat"><label  for"followed_id">Unfollow</label></div>
+          <div class="lblFloat"><input type="hidden" name="followed_id" value=<%= post.user_id %>></div>
+          <div class="lblFloat"><input type="submit"></div>
+        </form>
+
+        </div>
     </div>
 
     <% end %>
