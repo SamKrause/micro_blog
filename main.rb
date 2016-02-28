@@ -29,8 +29,17 @@ get '/user' do
   erb :user
 end
 
-get '/other_user' do
-  erb :other_user
+post '/other_user' do
+  loggedIn
+  if @user
+    @other_user = User.find_by(handle: params["other_user_handle"])
+    @posts = Post.where(:user_id => @other_user.id).all
+    @following = FollowerFollowed.where(:follower_id => @other_user.id)
+    @followers = FollowerFollowed.where(:followed_id => @other_user.id)
+    erb :other_user
+  else
+    redirect to '/'
+  end
 end
 
 get '/sign_up' do
@@ -42,7 +51,7 @@ post '/newUser' do
   User.create(fname: params["fname"], lname: params["lname"], email: params["email"], handle: params["handle"], password: params["password"])
   user = User.find_by(handle: params["handle"])
   session[:user_id] = user.id
-  redirect "/user"
+  redirect to "/user"
 end
 
 post '/login' do
@@ -104,6 +113,9 @@ post '/deleteUser' do
   session[:user_id] = nil
   redirect '/'
 end
+
+#Other User Page Methods
+
 
 #Universal Methods
 def loggedIn

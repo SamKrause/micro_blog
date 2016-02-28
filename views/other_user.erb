@@ -18,13 +18,23 @@
 <div class='following-list'>
   <h4>Following</h4>
   <% @following.each do |following| %>
-  <p><%= User.getHandle(following.followed_id) %></p>
+  <form method="POST" action="/other_user">
+    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
+    <button>
+      <p><%= User.getHandle(following.followed_id) %></p>
+    </button>
+  </form>
   <% end %>
 </div>
 
 <div class='followers-list'>
   <h4>Followers</h4>
   <% @followers.each do |followers| %>
-  <p><%= User.getHandle(followers.follower_id) %></p>
+  <form method="POST" action="/other_user">
+    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
+    <button>
+      <p><%= User.getHandle(followers.follower_id) %></p>
+    </button>
+  </form>
   <% end %>
 </div>

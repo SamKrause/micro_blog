@@ -31,7 +31,12 @@
 <% @posts.reverse.take(10).each do |post| %>
 
 <div class='home-posts'>
-  <p><%= User.getHandle(post.user_id) %></p>
+  <form method="POST" action="/other_user">
+    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
+    <button>
+      <p><%= User.getHandle(post.user_id) %></p>
+    </button>
+  </form>
   <p><%= post.message %></p>
   <p><%= post.created_at %></p>
   <form method="POST" action="/follow_other_user" >
