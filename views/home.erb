@@ -13,36 +13,38 @@
   </div>
 </div>
 <div class="page_posts_bk">
-  <div class="home_posts_wrap">
+  <div class="posts_wrap">
     <div class="home-greeting">
       <h2>Welcome <%= @user ? @user.fname : "Guest" %></h2>
       <h3> Here's what you've missed so far</h3>
     </div>
     <% @posts.reverse.take(10).each do |post| %>
-      <div class='home-posts' >
+      <div class='individual-posts' >
         <form method="POST" action="/other_user">
           <input type="hidden" name="other_user_handle" value=<%= User.getHandle(post.user_id) %>>
-          <button>
-            <p><%= User.getHandle(post.user_id) %></p>
+          <button class="handle-button">
+            <%= User.getHandle(post.user_id) %>
           </button>
         </form>
         <div class="post_message">
           <%= post.message %>
         </div>
         <div class="post_date">
-          Posted On: <%= post.created_at %>
+          Posted On: <%= post.created_at.localtime.strftime("%a %b %d %Y %I:%M:%S %p") %>
         </div>
         <div class="follow">
-          <% if FollowerFollowed.find_by(follower_id: @user.id, followed_id: post.user_id) %>
-            <form method="POST" action="/unfollow_other_user" >
-              <input type="hidden" name="followed_id" value=<%= post.user_id %>>
-              <button class="follow-button" type="submit">Unfollow</button>
-            </form>
-          <% else %>
-            <form method="POST" action="/follow_other_user" >
-              <input type="hidden" name="followed_id" value=<%= post.user_id %>>
-              <button class="follow-button" type="submit">Follow</button>
-            </form>
+          <% if @user %>
+            <% if FollowerFollowed.find_by(follower_id: @user.id, followed_id: post.user_id) %>
+              <form method="POST" action="/unfollow_other_user" >
+                <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+                <button class="follow-button" type="submit">Unfollow</button>
+              </form>
+            <% else %>
+              <form method="POST" action="/follow_other_user" >
+                <input type="hidden" name="followed_id" value=<%= post.user_id %>>
+                <button class="follow-button" type="submit">Follow</button>
+              </form>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -8,12 +8,18 @@
 <a href='/'>Home</a>
 <a href="/user">My Profile</a>
 
-<% @posts.reverse.each do |post| %>
-<div class='user-posts'>
-  <p><%= post.message %></p>
-  <p><%= post.created_at %></p>
+<div class="posts_wrap">
+  <% @posts.reverse.each do |post| %>
+    <div class='individual-posts'>
+      <div class='users_post_message'>
+        <p><%= post.message %></p>
+      </div>
+      <div class="post_date">
+        <p><%= post.created_at.localtime.strftime("%a %b %d %Y %I:%M:%S %p") %></p>
+      </div>
+    </div>
+  <% end %>
 </div>
-<% end %>
 
 <div class='following-list'>
   <h4>Following</h4>
