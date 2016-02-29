@@ -162,25 +162,46 @@ header {
 }
 
 /* Home Posts Styling*/
-.home_posts_wrap {
+.posts_wrap {
   width:650px;
-  margin:0 auto;
+  margin:25px auto 0 auto;
   font-family: sans-serif;
 }
 
-.home-posts {
+.individual-posts {
   border: 1px solid black;
   margin-bottom: 2em;
-  background-color: grey;
+  background: rgb(104, 114, 136);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .page_posts_bk {
-  padding-top: 150px;
+  padding-top: 11em;
 }
 
 .home-greeting {
   margin-bottom: 3em;
   text-align: center;
+}
+
+.handle-button {
+  margin-top: .5em;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+  display: block;
+  border: none;
+  background: rgba(139, 139, 139, 0);
+  font-weight: bold;
+}
+
+.handle-button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  color: white;
+  background-color: #1821a6;
+  border: white 1px solid;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .post_message {
@@ -194,34 +215,38 @@ header {
 
 .post_date {
   font-size:.8em;
-  color:blue;
+  color:#1821a6;
   text-align:right;
+  margin-right: 1em
 }
 
 .follow-button {
-  text-decoration: none;
   background-color: white;
-  color: blue;
+  color: #1821a6;
   width: 10em;
   height: 2em;
   margin-left: 1em;
   margin-bottom: .5em;
-  border: blue 1px solid;
+  border: #1821a6 1px solid;
 }
 
 .follow-button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   color: white;
-  background-color: blue;
+  background-color: #58b0d1;
   border: white 1px solid;
+  cursor: pointer;
 }
 
-.follow-buttons {
-  text-decoration: bold;
-  width: 10em;
-  height: 2em;
-  margin-left: 1em;
-  margin-bottom: .5em;
+/* User and Other User Post Styling */
+
+.users_post_message {
+  padding:10px;
+  margin:20px auto 15px auto;
+  width:500px;
+  background-color: white;
+  border: black 1px solid;
+  border-radius: 3px;
 }
 
 .loginLabelP {
