@@ -1,28 +1,27 @@
 <div class="cSpan">
-  <div class="user_edit_wrap">
+<div class="user_edit_wrap">
     <div>
-      <h2>User Account: <%= @user.handle %></h2>
+      <h2 >User Account: <span class="upCase white"><%= @user.handle %></span></h2>
     </div>
     <div>
-      <p><%= @user.fname + " " + @user.lname %></p>
-      <p><%= @user.email %></p>
+      <p><span>Name:</span> <span  class="white"><%= @user.fname + " " + @user.lname %></span></p>
+      <p><span>Email:</span> <span class="white"><%= @user.email %></span></p>
     </div>
     <a href='/'>Home</a>
     <a href="#" class="modal-link">Edit Profile</a>
-    <div class="delete-button">
-      <h3>Delete</h3>
+    <div class="delete-button" style="padding:15px; float:right;">
+      <h3>Delete Account</h3>
       <form method="POST" action="/deleteUser">
         <input type="submit">
       </form>
     </div>
+    <div style="clear:both; border-bottom:1px solid black; width:600px;"></div>
     <form method="POST" action="/newPost">
-      <label for="message">What is on your mind?</label>
-      <textarea name="message"></textarea>
+      <div style="font-size:1.5em;padding:15px;"><label for="message"> <h3>What is on your mind?</h2></label></div>
+      <br />
+      <textarea class="ideas" name="message"></textarea>
       <input type="submit">
     </form>
-    <div>
-      <%= flash[:notice] if flash[:notice] %>
-    </div>
     <div class="posts_wrap">
       <% @posts.reverse.each do |post| %>
         <div class='individual-posts'>
@@ -35,6 +34,7 @@
         </div>
       <% end %>
     </div>
+<div style="=color:white;">
     <div class='following-list'>
       <h4>Following</h4>
       <% @following.each do |following| %>
@@ -48,9 +48,8 @@
     </div>
 
     <div class='followers-list'>
-      <h4>Followers</h4>
-      <% @followers.each do |followers| %>
-      <form method="POST" action="/other_user">
+      <h4>Followers</h4> <% @followers.each do |followers| %>
+      <form method="POST" action="/ot her_user">
         <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
         <button>
           <p><%= User.getHandle(followers.follower_id) %></p>
@@ -59,15 +58,17 @@
       <% end %>
     </div>
 
+</div>
     <div id="outer-box">
       <div id="inner-box">
         <div id="modal-appear">
+          <div style="padding:15px; color:red;">
           <form method="POST" action="/editUser">
-            <label for="fname">First Name</label>
+            <label  ssfor="fname">First Name</label>
             <input  class="formTxt" type="text" name="fname" value=<%= @user.fname %>><br>
-            <label for="lname">Last Name</label>
+            <label  for="lname">Last Name</label>
             <input class="formTxt" type="text" name="lname" value=<%= @user.lname %>><br>
-            <label for="email">Email</label>
+            <label  for="email">Email</label>
             <input class="formTxt" type="text" name="email" value=<%= @user.email %>><br>
             <label for="handle">Handle</label>
             <input class="formTxt" type="text" name="handle" value=<%= @user.handle %>><br>
@@ -76,8 +77,9 @@
             <input id="submit" type="submit">
           </form>
           <button id='cancel'>Cancel</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
 </div>
