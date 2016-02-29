@@ -1,13 +1,12 @@
-<div>
-  <h2><%= @other_user.handle %></h2>
+<div class="user-wrapper">
+  <div>
+    <h2><%= @other_user.handle %></h2>
+  </div>
+  <div>
+    <p><%= @other_user.fname + " " + @other_user.lname %></p>
+    <p><%= @other_user.email %></p>
+  </div>
 </div>
-<div>
-  <p><%= @other_user.fname + " " + @other_user.lname %></p>
-  <p><%= @other_user.email %></p>
-</div>
-<a href='/'>Home</a>
-<a href="/user">My Profile</a>
-
 <div class="posts_wrap">
   <% @posts.reverse.each do |post| %>
     <div class='individual-posts'>
@@ -21,26 +20,26 @@
   <% end %>
 </div>
 
-<div class='following-list'>
-  <h4>Following</h4>
-  <% @following.each do |following| %>
-  <form method="POST" action="/other_user">
-    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
-    <button>
-      <p><%= User.getHandle(following.followed_id) %></p>
-    </button>
-  </form>
-  <% end %>
-</div>
-
-<div class='followers-list'>
-  <h4>Followers</h4>
-  <% @followers.each do |followers| %>
-  <form method="POST" action="/other_user">
-    <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
-    <button>
-      <p><%= User.getHandle(followers.follower_id) %></p>
-    </button>
-  </form>
-  <% end %>
+<div class="follower-list-wrapper">
+  <div class='follower-list'>
+    <h4>Following</h4>
+    <% @following.each do |following| %>
+    <form method="POST" action="/other_user">
+      <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
+      <button class="handle-button-user-page">
+        <%= User.getHandle(following.followed_id) %>
+      </button>
+    </form>
+    <% end %>
+  </div>
+  <div class='follower-list'>
+    <h4>Followers</h4> <% @followers.each do |followers| %>
+    <form method="POST" action="/other_user">
+      <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
+      <button class="handle-button-user-page">
+        <%= User.getHandle(followers.follower_id) %>
+      </button>
+    </form>
+    <% end %>
+  </div>
 </div>
