@@ -96,8 +96,13 @@ end
 #User Page Methods
 post '/newPost' do
   loggedIn
-  Post.create(user_id: @user.id, message: params["message"], created_at: Time.now)
-  redirect "/user"
+  if params["message"].length < 150
+    Post.create(user_id: @user.id, message: params["message"], created_at: Time.now)
+    redirect "/user"
+  else
+    flash[:notice] = "Your message can only be 150 characters or less."
+    redirect "/user"
+  end
 end
 
 post '/editUser' do

@@ -22,8 +22,9 @@
         <label for="message"><h3>What is on your mind?</h3></label><br>
       </div>
       <textarea class="message-box" name="message"></textarea>
-      <input type="submit">
+      <input style="margin-bottom:15px" type="submit">
     </form>
+    <%= flash[:notice] if flash[:notice]  %>
     <div class="user_posts_wrap">
       <% @posts.reverse.each do |post| %>
         <div class='individual-posts'>
