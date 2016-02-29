@@ -1,28 +1,30 @@
 <div class="cSpan">
-<div class="user_edit_wrap">
+  <div class="user-wrapper">
     <div>
-      <h2 >User Account: <span class="upCase white"><%= @user.handle %></span></h2>
+      <h2><%= @user.handle %></h2>
     </div>
     <div>
-      <p><span>Name:</span> <span  class="white"><%= @user.fname + " " + @user.lname %></span></p>
-      <p><span>Email:</span> <span class="white"><%= @user.email %></span></p>
+      <p><%= @user.fname + " " + @user.lname %></p>
+      <p><%= @user.email %></p>
     </div>
-    <a href='/'>Home</a>
-    <a href="#" class="modal-link">Edit Profile</a>
-    <div class="delete-button" style="padding:15px; float:right;">
-      <h3>Delete Account</h3>
+    <div class="user-edit-delete-buttons">
+      <button>
+        <a href="#" class="modal-link">Edit Profile</a>
+      </button>
       <form method="POST" action="/deleteUser">
-        <input type="submit">
+        <button>
+          <h3>Delete Account</h3>
+        </button>
       </form>
     </div>
-    <div style="clear:both; border-bottom:1px solid black; width:600px;"></div>
     <form method="POST" action="/newPost">
-      <div style="font-size:1.5em;padding:15px;"><label for="message"> <h3>What is on your mind?</h2></label></div>
-      <br />
-      <textarea class="ideas" name="message"></textarea>
+      <div class="new-post-wrapper">
+        <label for="message"><h3>What is on your mind?</h3></label><br>
+      </div>
+      <textarea class="message-box" name="message"></textarea>
       <input type="submit">
     </form>
-    <div class="posts_wrap">
+    <div class="user_posts_wrap">
       <% @posts.reverse.each do |post| %>
         <div class='individual-posts'>
           <div class='users_post_message'>
@@ -34,52 +36,48 @@
         </div>
       <% end %>
     </div>
-<div style="=color:white;">
-    <div class='following-list'>
+  </div>
+  <div class="follower-list-wrapper">
+    <div class='follower-list'>
       <h4>Following</h4>
       <% @following.each do |following| %>
       <form method="POST" action="/other_user">
         <input type="hidden" name="other_user_handle" value=<%= User.getHandle(following.followed_id) %>>
-        <button>
-          <p><%= User.getHandle(following.followed_id) %></p>
+        <button class="handle-button-user-page">
+          <%= User.getHandle(following.followed_id) %>
         </button>
       </form>
       <% end %>
     </div>
-
-    <div class='followers-list'>
+    <div class='follower-list'>
       <h4>Followers</h4> <% @followers.each do |followers| %>
-      <form method="POST" action="/ot her_user">
+      <form method="POST" action="/other_user">
         <input type="hidden" name="other_user_handle" value=<%= User.getHandle(followers.follower_id) %>>
-        <button>
-          <p><%= User.getHandle(followers.follower_id) %></p>
+        <button class="handle-button-user-page">
+          <%= User.getHandle(followers.follower_id) %>
         </button>
       </form>
       <% end %>
     </div>
-
-</div>
-    <div id="outer-box">
-      <div id="inner-box">
-        <div id="modal-appear">
-          <div style="padding:15px; color:red;">
-          <form method="POST" action="/editUser">
-            <label  ssfor="fname">First Name</label>
-            <input  class="formTxt" type="text" name="fname" value=<%= @user.fname %>><br>
-            <label  for="lname">Last Name</label>
-            <input class="formTxt" type="text" name="lname" value=<%= @user.lname %>><br>
-            <label  for="email">Email</label>
-            <input class="formTxt" type="text" name="email" value=<%= @user.email %>><br>
-            <label for="handle">Handle</label>
-            <input class="formTxt" type="text" name="handle" value=<%= @user.handle %>><br>
-            <label for="password">Password</label>
-            <input class="formTxt" type="text" name="password" value=<%= @user.password %>><br>
-            <input id="submit" type="submit">
-          </form>
-          <button id='cancel'>Cancel</button>
-          </div>
-        </div>
+  </div>
+  <div id="outer-box">
+    <div id="inner-box">
+      <div id="modal-appear">
+        <form method="POST" action="/editUser">
+          <label  ssfor="fname">First Name</label>
+          <input  class="formTxt" type="text" name="fname" value=<%= @user.fname %>><br>
+          <label  for="lname">Last Name</label>
+          <input class="formTxt" type="text" name="lname" value=<%= @user.lname %>><br>
+          <label  for="email">Email</label>
+          <input class="formTxt" type="text" name="email" value=<%= @user.email %>><br>
+          <label for="handle">Handle</label>
+          <input class="formTxt" type="text" name="handle" value=<%= @user.handle %>><br>
+          <label for="password">Password</label>
+          <input class="formTxt" type="text" name="password" value=<%= @user.password %>><br>
+          <input id="submit" type="submit">
+        </form>
+        <button style="margin-top:5px" id='cancel'>Cancel</button>
       </div>
     </div>
-</div>
+  </div>
 </div>
