@@ -38,6 +38,7 @@ header, .topMenu{width:960px; margin:auto;}
 
 .topMenu a:link {
   color:#ffffff;
+  text-decoration: none;
 }
 
 .topMenu a:active {
@@ -259,3 +260,29 @@ header {
   margin-bottom:15px;
   font-size:1em;
 }
+
+
+.ideas{width:650px;
+height:150px; font-size: 1.5em; }
+
+.upCase{text-transform: uppercase;}
+.white{color:white;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
